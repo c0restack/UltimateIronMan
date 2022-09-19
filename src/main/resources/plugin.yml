@@ -4,3 +4,7 @@ main: ultimateironmanplugin.ultimateironmanplugin.UltimateIronManPlugin
 api-version: 1.19
 authors: [ Kebulove ]
 description: Runescape type of beat with extra steps
+commands:
+  ironman:
+    description: Selvittää kuka on uim ja kuka ei
+    usage: /ironman <player>
