@@ -1,6 +1,8 @@
 package ultimateironmanplugin.ultimateironmanplugin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
@@ -50,6 +52,20 @@ public final class UltimateIronManPlugin extends JavaPlugin implements Listener 
         Scanner scanner = new Scanner(new File("C:/Users/eeron/Desktop/papertestserver/plugins/"+ name +".txt"));
         int [] tall = new int [100];
         int deaths = scanner.nextInt();
+        if (deaths == 0){
+            p.setDisplayName(ChatColor.RED + p.getName());
+            p.setPlayerListName(ChatColor.RED + p.getName());
+
+            Bukkit.broadcastMessage(ChatColor.RED + "ULTIMATE IRONMAN " + name + " ON LIITTYNYT SERVERILLE!");
+            for(Player all : Bukkit.getOnlinePlayers()){
+                p.playSound(p.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_1, 5, 0);
+                p.playSound(p.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_2, 5, 0);
+                p.playSound(p.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_0, 5, 0);
+            }
+
+        }else {
+            Bukkit.broadcastMessage(ChatColor.BLUE + "Lmao joku nobo joinas");
+        }
         System.out.println(name + " on kuollut " + deaths + " kertaa.");
         setMaxHp(deaths, p);
 
@@ -88,7 +104,6 @@ public final class UltimateIronManPlugin extends JavaPlugin implements Listener 
         player.setMaxHealth(deathMod);
 
     }
-
 
 
     @Override
