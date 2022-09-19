@@ -1,0 +1,6 @@
+name: UltimateIronManPlugin
+version: '${project.version}'
+main: ultimateironmanplugin.ultimateironmanplugin.UltimateIronManPlugin
+api-version: 1.19
+authors: [ Kebulove ]
+description: Runescape type of beat with extra steps
