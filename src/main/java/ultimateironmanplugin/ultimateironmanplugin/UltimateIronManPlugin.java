@@ -1,9 +1,6 @@
 package ultimateironmanplugin.ultimateironmanplugin;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
-import org.bukkit.Sound;
+import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -12,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.w3c.dom.ls.LSOutput;
@@ -69,11 +67,14 @@ public final class UltimateIronManPlugin extends JavaPlugin implements Listener 
                 all.playSound(p.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_0, 5, 0);
             }
 
-        } else if (deaths >= 10) {
+        } if (deaths >= 10) {
             p.setGameMode(GameMode.SPECTATOR);
-        } else {
-            Bukkit.broadcastMessage(ChatColor.BLUE + "Lmao joku nobo joinas");
         }
+        else {
+            Bukkit.broadcastMessage(ChatColor.BLUE + "Lmao joku nobo joinas");
+            //p.setGameMode(GameMode.SURVIVAL);
+        }
+
         System.out.println(name + " on kuollut " + deaths + " kertaa.");
         setMaxHp(deaths, p);
 
@@ -101,24 +102,24 @@ public final class UltimateIronManPlugin extends JavaPlugin implements Listener 
         if (newDeaths >= 10){
             p.setGameMode(GameMode.SPECTATOR);
             Bukkit.broadcastMessage(ChatColor.DARK_GREEN + name + " on kuollu vitusti liian monta kertaa, ettei se saa enään pelata");
-        }
-
-        setMaxHp(newDeaths, p);
-
-    }
-
-    public void setMaxHp(int deaths, Player player){
-        int deathLoose = deaths * 2;
-        int deathMod = 20 - deathLoose;
-        player.setMaxHealth(deathMod);
-        String name = player.getName();
-        if (deaths == 1){
+        }if (newDeaths == 1){
             Bukkit.broadcastMessage(ChatColor.DARK_GREEN + name + " on menettänyt ULTIMATE IRONMAN statuksensa!");
             for(Player all : Bukkit.getOnlinePlayers()){
                 all.playSound(all.getLocation(), Sound.ITEM_AXE_STRIP, 5, 0);
 
             }
         }
+
+        setMaxHp(newDeaths, p);
+
+    }
+
+
+    public void setMaxHp(int deaths, Player player){
+        int deathLoose = deaths * 2;
+        int deathMod = 20 - deathLoose;
+        player.setMaxHealth(deathMod);
+        String name = player.getName();
 
     }
 
