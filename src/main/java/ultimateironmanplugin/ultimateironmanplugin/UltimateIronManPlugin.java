@@ -70,7 +70,7 @@ public final class UltimateIronManPlugin extends JavaPlugin implements Listener 
         } if (deaths >= 10) {
             p.setGameMode(GameMode.SPECTATOR);
         }
-        else {
+        else if (deaths != 0){
             Bukkit.broadcastMessage(ChatColor.BLUE + "Lmao joku nobo joinas");
             //p.setGameMode(GameMode.SURVIVAL);
         }
