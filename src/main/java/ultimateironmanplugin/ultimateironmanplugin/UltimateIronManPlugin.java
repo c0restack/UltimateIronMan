@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public final class UltimateIronManPlugin extends JavaPlugin implements Listener {
 
-    String polku = "C:/Users/eeron/Desktop/papertestserver/plugins/";
+    String polku = "/home/pi/minecraft/plugins/";
 
     @Override
     public void onEnable() {
@@ -67,7 +67,7 @@ public final class UltimateIronManPlugin extends JavaPlugin implements Listener 
                 all.playSound(p.getLocation(), Sound.ITEM_GOAT_HORN_SOUND_0, 5, 0);
             }
 
-        } if (deaths >= 10) {
+        } if (deaths >= 5) {
             p.setGameMode(GameMode.SPECTATOR);
         }
         else if (deaths != 0){
@@ -99,9 +99,9 @@ public final class UltimateIronManPlugin extends JavaPlugin implements Listener 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if (newDeaths >= 10){
+        if (newDeaths >= 5){
             p.setGameMode(GameMode.SPECTATOR);
-            Bukkit.broadcastMessage(ChatColor.DARK_GREEN + name + " on kuollu vitusti liian monta kertaa, ettei se saa enään pelata");
+            Bukkit.broadcastMessage(ChatColor.DARK_GREEN + name + " on kuollu vitusti liian monta kertaa, ettei se saa enään pelata. PERMADEATH!");
         }if (newDeaths == 1){
             Bukkit.broadcastMessage(ChatColor.DARK_GREEN + name + " on menettänyt ULTIMATE IRONMAN statuksensa!");
             for(Player all : Bukkit.getOnlinePlayers()){
@@ -116,7 +116,7 @@ public final class UltimateIronManPlugin extends JavaPlugin implements Listener 
 
 
     public void setMaxHp(int deaths, Player player){
-        int deathLoose = deaths * 2;
+        int deathLoose = deaths * 4;
         int deathMod = 20 - deathLoose;
         player.setMaxHealth(deathMod);
         String name = player.getName();
@@ -151,8 +151,9 @@ public final class UltimateIronManPlugin extends JavaPlugin implements Listener 
                     if (deaths == 0){
                         p.sendMessage(ChatColor.GREEN+ ironName + " ON ULTIMATE IRONMAN!");
                     }else {
+                        int hpmodi = deaths * 2;
                         p.sendMessage(ChatColor.GOLD+ ironName + " ei ole ultimate ironman!");
-                        int hp = 10 - deaths;
+                        int hp = 10 - hpmodi;
                         p.sendMessage(ChatColor.GOLD+ "Hänellä on "+ hp +" sydäntä jäljellä.");
                     }
 
